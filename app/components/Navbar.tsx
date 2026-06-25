@@ -24,7 +24,7 @@ export default function Navbar() {
 
   return (
     <nav className="fixed top-8 left-1/2 -translate-x-1/2 z-50">
-      <div className="flex items-center bg-white/80 dark:bg-[#1A1A1A]/80 border border-slate-200 dark:border-[#333] rounded-full p-1.5 shadow-[0_8px_30px_rgb(0,0,0,0.06)] backdrop-blur-lg transition-colors">
+      <div className="flex items-center bg-white/10 dark:bg-black/20 border border-white/20 dark:border-white/10 rounded-full p-1.5 shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-md transition-colors">
         
         <div 
           className="flex items-center gap-1 px-2 relative" 
