@@ -24,7 +24,10 @@ export default function Navbar() {
 
   return (
     <nav className="fixed top-8 left-1/2 -translate-x-1/2 z-50">
-      <div className="flex items-center bg-[#1a1a1a]/40 dark:bg-[#1a1a1a]/50 border border-white/10 rounded-full p-1.5 shadow-[0_8px_32px_rgba(0,0,0,0.2)] backdrop-blur-2xl transition-colors">
+      <div 
+        className="flex items-center bg-[#1a1a1a]/40 dark:bg-[#1a1a1a]/50 border border-white/10 rounded-full p-1.5 shadow-[0_8px_32px_rgba(0,0,0,0.2)] transition-colors"
+        style={{ backdropFilter: "blur(24px)", WebkitBackdropFilter: "blur(24px)" }}
+      >
         
         <div 
           className="flex items-center gap-1 px-2 relative" 
