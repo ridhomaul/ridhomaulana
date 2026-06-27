@@ -25,9 +25,9 @@ export default function RootLayout({
         <ThemeProvider>
           {/* Gradient Blobs untuk Latar Belakang */}
           <div className="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
-            <div className="absolute top-[-10%] left-[-10%] w-[40rem] h-[40rem] rounded-full bg-[#5a00cf]/10 dark:bg-[#5a00cf]/20 blur-[120px]" />
-            <div className="absolute top-[20%] right-[-5%] w-[30rem] h-[30rem] rounded-full bg-blue-400/10 dark:bg-blue-600/20 blur-[100px]" />
-            <div className="absolute bottom-[-10%] left-[20%] w-[35rem] h-[35rem] rounded-full bg-emerald-400/10 dark:bg-emerald-600/10 blur-[120px]" />
+            <div className="absolute top-[-10%] left-[-10%] w-160 h-160 rounded-full bg-[#5a00cf]/10 dark:bg-[#5a00cf]/20 blur-[120px]" />
+            <div className="absolute top-[20%] right-[-5%] w-120 h-120 rounded-full bg-blue-400/10 dark:bg-blue-600/20 blur-[100px]" />
+            <div className="absolute bottom-[-10%] left-[20%] w-140 h-140 rounded-full bg-emerald-400/10 dark:bg-emerald-600/10 blur-[120px]" />
           </div>
 
           <Navbar />

@@ -11,12 +11,23 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  /* Remove scroll-behavior: smooth to avoid conflicts with GSAP ScrollTrigger pinning/scrubbing */
 }
 
-/* Blok 'body' yang tadinya mengunci warna putih (FAF8F5) sudah SAYA HAPUS di sini.
-  Sekarang warna background akan sepenuhnya dikendalikan oleh file layout.tsx
-*/
+/* Premium Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+}
 
 input,
 textarea {
@@ -28,6 +39,11 @@ textarea {
 input:focus,
 textarea:focus {
   border-color: #1A1A1A;
+}
+
+.dark input:focus,
+.dark textarea:focus {
+  border-color: #ffffff;
 }
 
 input::placeholder,

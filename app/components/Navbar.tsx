@@ -1,9 +1,16 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Home, Sparkles, Briefcase, User, Mail, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger, useGSAP);
+}
 
 const navItems = [
   { name: "Home", href: "#home", icon: Home },
@@ -13,25 +20,45 @@ const navItems = [
 ];
 
 export default function Navbar() {
-  // Tambahkan state activeItem untuk mengingat menu yang sedang di-klik
   const [activeItem, setActiveItem] = useState("Home");
   const [hoveredItem, setHoveredItem] = useState("Home");
   
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const navRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => setMounted(true), []);
 
+  useGSAP(() => {
+    // Hide navbar on scroll down, show on scroll up
+    const showAnim = gsap.from(navRef.current, { 
+      yPercent: -150,
+      paused: true,
+      duration: 0.3,
+      ease: "power2.out"
+    }).progress(1); // start shown
+
+    ScrollTrigger.create({
+      start: "top top",
+      end: "max",
+      onUpdate: (self) => {
+        if (self.direction === 1 && self.scroll() > 50) {
+          showAnim.reverse(); // hide
+        } else {
+          showAnim.play(); // show
+        }
+      }
+    });
+  }, { scope: navRef });
+
   return (
-    <div className="fixed top-8 inset-x-0 z-50 flex justify-center pointer-events-none">
+    <div ref={navRef} className="fixed top-6 inset-x-0 z-50 flex justify-center pointer-events-none">
       <nav 
-        className="pointer-events-auto flex items-center bg-[#1a1a1a]/40 dark:bg-[#1a1a1a]/50 border border-white/10 rounded-full p-1.5 shadow-[0_8px_32px_rgba(0,0,0,0.2)] transition-colors backdrop-blur-2xl"
-        style={{ backdropFilter: "blur(24px)", WebkitBackdropFilter: "blur(24px)" }}
+        className="pointer-events-auto flex items-center bg-white/40 dark:bg-[#1a1a1a]/60 border border-white/40 dark:border-white/10 rounded-full p-1.5 shadow-[0_8px_32px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)] transition-colors backdrop-blur-xl"
       >
         
         <div 
           className="flex items-center gap-1 px-2 relative" 
-          // Saat mouse pergi, kembalikan kapsul ke menu yang terakhir di-klik (activeItem)
           onMouseLeave={() => setHoveredItem(activeItem)}
         >
           {navItems.map((item) => {
@@ -43,33 +70,31 @@ export default function Navbar() {
                 key={item.name}
                 href={item.href}
                 onMouseEnter={() => setHoveredItem(item.name)}
-                // Saat di-klik, perbarui ingatan menu yang aktif
                 onClick={() => setActiveItem(item.name)}
                 className={`relative flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                  isHovered || isActive ? "text-white" : "text-slate-300 hover:text-white"
+                  isHovered || isActive ? "text-white" : "text-slate-600 dark:text-slate-300 hover:text-[#1a1a1a] dark:hover:text-white"
                 }`}
               >
                 {isHovered && (
                   <motion.div
                     layoutId="nav-pill"
-                    // Kapsul hijau stabilo
-                    className="absolute inset-0 bg-[#5a00cf] dark:bg-[#5a00cf] rounded-full"
+                    className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full shadow-lg"
                     transition={{ type: "spring", stiffness: 400, damping: 30 }}
                   />
                 )}
-                <item.icon className="relative z-10 w-4 h-4" />
-                <span className="relative z-10 hidden sm:inline">{item.name}</span>
+                <item.icon className={`relative z-10 w-4 h-4 ${isActive && !isHovered ? "text-purple-600 dark:text-purple-400" : ""}`} />
+                <span className={`relative z-10 hidden sm:inline ${isActive && !isHovered ? "text-purple-600 dark:text-purple-400" : ""}`}>{item.name}</span>
               </a>
             );
           })}
         </div>
 
-        <div className="w-px h-5 bg-slate-200 dark:bg-[#333] mx-2"></div>
+        <div className="w-px h-6 bg-slate-300 dark:bg-slate-700 mx-2"></div>
         
         <div className="flex items-center gap-2 pr-1">
           <button 
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="p-1.5 text-slate-300 hover:text-white hover:bg-white/10 rounded-full transition-colors"
+            className="p-2 text-slate-600 dark:text-slate-300 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-black/5 dark:hover:bg-white/10 rounded-full transition-all"
           >
             {mounted && theme === "dark" ? (
               <Sun className="w-4 h-4" />
@@ -77,9 +102,7 @@ export default function Navbar() {
               <Moon className="w-4 h-4" />
             )}
           </button>
-          
         </div>
-
       </nav>
     </div>
   );
