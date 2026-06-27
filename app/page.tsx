@@ -140,6 +140,23 @@ export default function Home() {
     });
 
     // --- SCROLL ANIMATIONS ---
+    
+    // Big Transition Name Text
+    gsap.fromTo(".big-transition-text",
+      { opacity: 0, scale: 0.8, y: 50 },
+      {
+        opacity: 1, 
+        scale: 1, 
+        y: 0,
+        duration: 1.5,
+        ease: "expo.out",
+        scrollTrigger: {
+          trigger: ".big-transition-text",
+          start: "top 85%",
+        }
+      }
+    );
+
     // Sections Reveal
     const sections = gsap.utils.toArray(".reveal-section") as HTMLElement[];
     sections.forEach((sec) => {
@@ -294,15 +311,19 @@ export default function Home() {
         {/* --- MAIN CONTENT OVERLAY (Glassmorphism effect) --- */}
         <div className="relative z-20 w-full bg-[#FAF8F5]/90 dark:bg-[#121212]/90 backdrop-blur-3xl transition-colors duration-300 rounded-t-[2.5rem] md:rounded-t-[4rem] shadow-[0_-20px_50px_rgba(0,0,0,0.05)] dark:shadow-[0_-20px_50px_rgba(0,0,0,0.4)] pb-24 border-t border-slate-200 dark:border-slate-800/50">
 
+          {/* TRANSITION TEXT: GIANT NAME */}
+          <div className="w-full flex justify-center pt-32 pb-8 px-6 overflow-hidden">
+             <h2 className="big-transition-text font-heading text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-medium text-center text-[#1A1A1A] dark:text-white leading-[1.1] tracking-tighter">
+                Hi, I&apos;m <br /> <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-600 to-blue-500 dark:from-purple-400 dark:to-blue-400">Ridho Maulana.</span>
+             </h2>
+          </div>
+
           {/* ABOUT ME SECTION */}
-          <section id="about" className="reveal-section mx-auto max-w-7xl px-6 py-24 pt-32">
+          <section id="about" className="reveal-section mx-auto max-w-7xl px-6 py-16">
             <div className="grid gap-16 lg:grid-cols-[1.2fr_auto_1fr] items-start">
               {/* Kolom Kiri */}
               <div className="max-w-xl">
-                <h2 className="font-heading text-5xl font-medium text-[#1A1A1A] dark:text-white mb-6 leading-tight transition-colors">
-                  Hi, I&apos;m <br /> <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-600 to-blue-500 dark:from-purple-400 dark:to-blue-400">Ridho Maulana.</span>
-                </h2>
-                <p className="font-medium text-lg text-slate-600 dark:text-slate-300 mb-7 transition-colors leading-relaxed">
+                <p className="font-medium text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-7 transition-colors leading-relaxed">
                   As a Full-Stack Developer with strong roots in the digital media industry, I see software development as more than just lines of code. It is about creating an ecosystem that connects systems with people.
                 </p>
                 <div className="space-y-4 font-medium text-base text-slate-500 dark:text-slate-400 leading-relaxed transition-colors">
