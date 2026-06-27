@@ -319,89 +319,83 @@ export default function Home() {
           </div>
 
           {/* ABOUT ME SECTION */}
-          <section id="about" className="reveal-section mx-auto max-w-7xl px-6 py-16">
-            <div className="grid gap-16 lg:grid-cols-[1.2fr_auto_1fr] items-start">
-              {/* Kolom Kiri */}
-              <div className="max-w-xl">
-                <p className="font-medium text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-7 transition-colors leading-relaxed">
-                  As a Full-Stack Developer with strong roots in the digital media industry, I see software development as more than just lines of code. It is about creating an ecosystem that connects systems with people.
-                </p>
-                <div className="space-y-4 font-medium text-base text-slate-500 dark:text-slate-400 leading-relaxed transition-colors">
-                  <p>
-                    My specialization lies in designing robust backend architectures, primarily within the Laravel ecosystem, combined with clean and intuitive user interfaces.
-                  </p>
-                  <p>
-                    This dual background allows me to see the bigger picture of a product. From leading the execution of thousands of pieces of content at MileniaNews to building the Milenner project governance platform from the ground up, I bring media sensitivity into programming logic to design solutions that are technically scalable and relevant to the audience.
-                  </p>
-                </div>
-              </div>
-
-              {/* Kolom Tengah Divider */}
-              <div className="hidden lg:block w-px h-full min-h-[400px] bg-linear-to-b from-transparent via-slate-300 dark:via-slate-700 to-transparent mx-4"></div>
-
-              {/* Kolom Kanan */}
-              <div className="flex flex-col relative w-full items-center">
-                {/* Profile Flip Animation */}
+          <section id="about" className="reveal-section mx-auto max-w-7xl px-6 py-16 flex flex-col items-center">
+            
+            {/* Profile Flip Animation */}
+            <div 
+              className="about-image-container relative z-10 w-full max-w-[280px] mb-8 cursor-pointer group"
+              onClick={handleFlip}
+              style={{ perspective: "1000px" }}
+            >
+              <div 
+                ref={flipContainer}
+                className="relative w-full h-full transform-style-3d" 
+                style={{ transformStyle: "preserve-3d" }}
+              >
+                {/* Sisi Depan */}
                 <div 
-                  className="about-image-container relative z-10 w-full max-w-[280px] mb-12 cursor-pointer group"
-                  onClick={handleFlip}
-                  style={{ perspective: "1000px" }}
+                  className="rounded-full overflow-hidden border-[6px] border-white/50 dark:border-white/10 shadow-2xl backdrop-blur-sm transition-colors"
+                  style={{ backfaceVisibility: "hidden" }}
                 >
-                  <div 
-                    ref={flipContainer}
-                    className="relative w-full h-full transform-style-3d" 
-                    style={{ transformStyle: "preserve-3d" }}
-                  >
-                    {/* Sisi Depan */}
-                    <div 
-                      className="rounded-full overflow-hidden border-[6px] border-white/50 dark:border-white/10 shadow-2xl backdrop-blur-sm transition-colors"
-                      style={{ backfaceVisibility: "hidden" }}
-                    >
-                      <Image
-                        src="/ridhomaulana/profile1.png"
-                        alt="Digital Portrait Visual"
-                        width={400}
-                        height={400}
-                        className="w-full aspect-square object-cover grayscale group-hover:grayscale-0 transition-all duration-500 rounded-full p-1"
-                      />
-                    </div>
-
-                    {/* Sisi Belakang */}
-                    <div 
-                      className="absolute inset-0 rounded-full overflow-hidden border-[6px] border-white/50 dark:border-white/10 shadow-2xl backdrop-blur-sm bg-white dark:bg-[#1A1A1A] flex items-center justify-center p-2"
-                      style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
-                    >
-                      <Image
-                        src="/ridhomaulana/GIF1.gif"
-                        alt="Fun profile animation"
-                        width={400}
-                        height={400}
-                        className="w-full aspect-square object-cover rounded-full"
-                      />
-                    </div>
-                  </div>
+                  <Image
+                    src="/ridhomaulana/profile1.png"
+                    alt="Digital Portrait Visual"
+                    width={400}
+                    height={400}
+                    className="w-full aspect-square object-cover grayscale group-hover:grayscale-0 transition-all duration-500 rounded-full p-1"
+                  />
                 </div>
 
-                {/* Tech Stack Marquee */}
-                <div className="tech-stack-container w-[95vw] md:w-[70vw] relative z-10 overflow-hidden mx-auto py-4 mt-8 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-                  <p className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-8 text-center transition-colors">Technology Stack</p>
-                  
-                  <div className="animate-marquee gap-8 md:gap-12 pl-8 md:pl-12">
-                    {[...techIcons, ...techIcons].map((tool, idx) => (
-                      <div key={idx} className="group relative flex flex-col items-center justify-center cursor-crosshair">
-                        <tool.Icon 
-                          className={`w-10 h-10 transition-all duration-300 group-hover:scale-110 ${!tool.color ? 'text-black dark:text-white' : ''}`} 
-                          style={tool.color ? { color: tool.color } : {}}
-                        />
-                        <span className="absolute -bottom-8 text-[10px] font-bold uppercase tracking-wider bg-white/90 dark:bg-black/90 text-black dark:text-white px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-xl border border-slate-200/50 dark:border-slate-800/50 backdrop-blur-sm z-20">
-                          {tool.name}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
+                {/* Sisi Belakang */}
+                <div 
+                  className="absolute inset-0 rounded-full overflow-hidden border-[6px] border-white/50 dark:border-white/10 shadow-2xl backdrop-blur-sm bg-white dark:bg-[#1A1A1A] flex items-center justify-center p-2"
+                  style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
+                >
+                  <Image
+                    src="/ridhomaulana/GIF1.gif"
+                    alt="Fun profile animation"
+                    width={400}
+                    height={400}
+                    className="w-full aspect-square object-cover rounded-full"
+                  />
                 </div>
               </div>
             </div>
+
+            {/* Tech Stack Marquee */}
+            <div className="tech-stack-container w-[95vw] md:w-[70vw] relative z-10 overflow-hidden mx-auto py-4 mb-16 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+              <p className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-8 text-center transition-colors">Technology Stack</p>
+              
+              <div className="animate-marquee gap-8 md:gap-12 pl-8 md:pl-12">
+                {[...techIcons, ...techIcons].map((tool, idx) => (
+                  <div key={idx} className="group relative flex flex-col items-center justify-center cursor-crosshair">
+                    <tool.Icon 
+                      className={`w-10 h-10 transition-all duration-300 group-hover:scale-110 ${!tool.color ? 'text-black dark:text-white' : ''}`} 
+                      style={tool.color ? { color: tool.color } : {}}
+                    />
+                    <span className="absolute -bottom-8 text-[10px] font-bold uppercase tracking-wider bg-white/90 dark:bg-black/90 text-black dark:text-white px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-xl border border-slate-200/50 dark:border-slate-800/50 backdrop-blur-sm z-20">
+                      {tool.name}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* About Text */}
+            <div className="max-w-3xl text-center">
+              <p className="font-medium text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-7 transition-colors leading-relaxed">
+                As a Full-Stack Developer with strong roots in the digital media industry, I see software development as more than just lines of code. It is about creating an ecosystem that connects systems with people.
+              </p>
+              <div className="space-y-4 font-medium text-base md:text-lg text-slate-500 dark:text-slate-400 leading-relaxed transition-colors">
+                <p>
+                  My specialization lies in designing robust backend architectures, primarily within the Laravel ecosystem, combined with clean and intuitive user interfaces.
+                </p>
+                <p>
+                  This dual background allows me to see the bigger picture of a product. From leading the execution of thousands of pieces of content at MileniaNews to building the Milenner project governance platform from the ground up, I bring media sensitivity into programming logic to design solutions that are technically scalable and relevant to the audience.
+                </p>
+              </div>
+            </div>
+
           </section>
 
           {/* PROJECTS SECTION */}
