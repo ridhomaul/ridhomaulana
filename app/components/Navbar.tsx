@@ -34,8 +34,10 @@ export default function Navbar() {
   const [reducedMotion, setReducedMotion] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+     
     setReducedMotion(mediaQuery.matches);
     
     const listener = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
@@ -243,7 +245,7 @@ export default function Navbar() {
               <a
                 key={item.name}
                 href={item.href}
-                // @ts-ignore
+                // @ts-expect-error - itemsRef may be read-only in TS depending on setup
                 ref={el => itemsRef.current[idx] = el}
                 onMouseEnter={(e) => {
                   setHoveredItem(item.name);
