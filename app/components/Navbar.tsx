@@ -90,16 +90,49 @@ export default function Navbar() {
   return (
     <div ref={wrapperRef} className="fixed top-6 inset-x-0 z-50 flex justify-center pointer-events-none">
       
-      {/* Styles for dynamic reflection */}
+      {/* 
+        ========================================================================
+        REAL LIQUID GLASS SVG FILTER (Refraction + Chromatic Aberration)
+        ======================================================================== 
+      */}
+      <svg className="fixed w-0 h-0 pointer-events-none" aria-hidden="true" style={{ position: 'absolute' }}>
+        <defs>
+          <filter id="liquid-glass-refraction" x="-20%" y="-20%" width="140%" height="140%" colorInterpolationFilters="sRGB">
+            {/* 1. Base blur for depth of field */}
+            <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="BLUR" />
+            
+            {/* 2. Organic glass irregularity map (Turbulence) */}
+            <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="2" result="NOISE" seed="42" />
+            <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1.5 -0.2" in="NOISE" result="CONTRAST_NOISE" />
+            
+            {/* 3. Refraction displacement (distorts background based on noise) */}
+            <feDisplacementMap in="BLUR" in2="CONTRAST_NOISE" scale="16" xChannelSelector="R" yChannelSelector="G" result="REFRACTED" />
+            
+            {/* 4. Chromatic Aberration - Channel Splits (Red shifted right, Blue shifted left) */}
+            <feOffset dx="2.5" dy="0" in="REFRACTED" result="RED_SHIFT" />
+            <feOffset dx="-2.5" dy="0" in="REFRACTED" result="BLUE_SHIFT" />
+            
+            <feColorMatrix type="matrix" values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" in="RED_SHIFT" result="RED" />
+            <feColorMatrix type="matrix" values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0" in="REFRACTED" result="GREEN" />
+            <feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0" in="BLUE_SHIFT" result="BLUE" />
+            
+            {/* 5. Chromatic Aberration - Accurate Recombination via Arithmetic Addition */}
+            <feComposite operator="arithmetic" k1="0" k2="1" k3="1" k4="0" in="RED" in2="GREEN" result="RG" />
+            <feComposite operator="arithmetic" k1="0" k2="1" k3="1" k4="0" in="RG" in2="BLUE" result="FINAL_GLASS" />
+          </filter>
+        </defs>
+      </svg>
+
+      {/* Styles for dynamic caustic reflection */}
       <style dangerouslySetInnerHTML={{__html: `
-        @keyframes premium-glass-reflection {
-          0% { transform: translateX(-150%) skewX(-20deg); opacity: 0; }
-          10% { opacity: 0.6; }
-          20% { transform: translateX(300%) skewX(-20deg); opacity: 0; }
-          100% { transform: translateX(300%) skewX(-20deg); opacity: 0; }
+        @keyframes caustic-reflection {
+          0% { transform: translateX(-200%) skewX(-30deg); opacity: 0; }
+          20% { opacity: 0.8; }
+          40% { transform: translateX(300%) skewX(-30deg); opacity: 0; }
+          100% { transform: translateX(300%) skewX(-30deg); opacity: 0; }
         }
-        .animate-glass-reflection {
-          animation: premium-glass-reflection 7s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        .animate-caustic {
+          animation: caustic-reflection 8s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
           will-change: transform;
         }
       `}} />
@@ -109,23 +142,37 @@ export default function Navbar() {
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setIsHoveringNav(true)}
         onMouseLeave={handleMouseLeave}
-        className="pointer-events-auto relative flex items-center bg-white/40 dark:bg-[#1a1a1a]/50 border border-white/60 dark:border-white/10 rounded-full p-1.5 shadow-[0_8px_32px_rgba(0,0,0,0.08),inset_0_1px_1px_rgba(255,255,255,0.6)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.15)] transition-all duration-300 backdrop-blur-2xl saturate-150 overflow-hidden"
+        className="pointer-events-auto relative flex items-center p-1.5 transition-all duration-300 rounded-full"
       >
         
-        {/* Mouse Reactive Highlight */}
+        {/* Layer 1: SVG Backdrop Refraction */}
+        <div 
+          className="absolute inset-0 rounded-full pointer-events-none overflow-hidden bg-white/10 dark:bg-[#1a1a1a]/20"
+          style={{ 
+            backdropFilter: 'url(#liquid-glass-refraction)',
+            WebkitBackdropFilter: 'url(#liquid-glass-refraction)',
+          }}
+        />
+        
+        {/* Layer 2: 3D Surface & Specular Highlights */}
+        <div 
+          className="absolute inset-0 rounded-full pointer-events-none border border-white/50 dark:border-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.8),inset_0_2px_4px_rgba(255,255,255,0.3),inset_0_-1px_2px_rgba(0,0,0,0.2),0_8px_32px_rgba(0,0,0,0.1)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.3),inset_0_2px_4px_rgba(255,255,255,0.1),inset_0_-1px_2px_rgba(0,0,0,0.5),0_8px_32px_rgba(0,0,0,0.4)] bg-linear-to-b from-white/40 via-white/5 to-black/5 dark:from-white/10 dark:via-transparent dark:to-black/40"
+        />
+
+        {/* Layer 3: Mouse Reactive Caustic Highlight */}
         {!reducedMotion && isHoveringNav && (
           <div 
-            className="absolute inset-0 pointer-events-none rounded-full transition-opacity duration-300 z-0"
+            className="absolute inset-0 pointer-events-none rounded-full transition-opacity duration-300 mix-blend-overlay z-0"
             style={{
-              background: 'radial-gradient(120px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(255,255,255,0.3), transparent 100%)',
+              background: 'radial-gradient(150px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(255,255,255,0.7), transparent 100%)',
             }}
           />
         )}
 
-        {/* Dynamic Glass Reflection */}
+        {/* Layer 4: Dynamic Caustic Reflection Sweep */}
         {!reducedMotion && (
-          <div className="absolute inset-0 pointer-events-none rounded-full overflow-hidden z-50">
-            <div className="w-[40%] h-[200%] absolute -top-[50%] -left-[100%] bg-linear-to-r from-transparent via-white/60 to-transparent animate-glass-reflection mix-blend-overlay pointer-events-none" />
+          <div className="absolute inset-0 pointer-events-none rounded-full overflow-hidden z-40">
+            <div className="w-[60%] h-[200%] absolute -top-[50%] -left-[100%] bg-linear-to-r from-transparent via-white/50 to-transparent animate-caustic mix-blend-overlay pointer-events-none blur-[2px]" />
           </div>
         )}
 
@@ -149,11 +196,11 @@ export default function Navbar() {
                 {isHovered && (
                   <motion.div
                     layoutId="nav-pill"
-                    className="absolute inset-0 bg-linear-to-r from-purple-500 to-blue-500 rounded-full shadow-[0_4px_12px_rgba(168,85,247,0.3),inset_0_1px_1px_rgba(255,255,255,0.4)] border border-white/20 dark:border-white/10"
+                    className="absolute inset-0 bg-linear-to-r from-purple-500/90 to-blue-500/90 rounded-full shadow-[inset_0_1px_1px_rgba(255,255,255,0.6),inset_0_-1px_2px_rgba(0,0,0,0.3),0_4px_12px_rgba(168,85,247,0.4)] border border-white/30 dark:border-white/10"
                     transition={{ type: "spring", stiffness: 400, damping: 30 }}
                   >
                     {/* Glossy overlay for active item */}
-                    <div className="absolute inset-x-0 top-0 h-1/2 bg-linear-to-b from-white/30 to-transparent rounded-t-full pointer-events-none" />
+                    <div className="absolute inset-x-0 top-0 h-1/2 bg-linear-to-b from-white/40 to-transparent rounded-t-full pointer-events-none" />
                   </motion.div>
                 )}
                 <item.icon className={`relative w-4 h-4 transition-colors duration-300 z-20 ${isActive && !isHovered ? "text-purple-600 dark:text-purple-400" : ""}`} />
