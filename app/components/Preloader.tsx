@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import anime from "animejs";
+const anime = require("animejs");
 
 interface PreloaderProps {
   onComplete: () => void;
@@ -159,7 +159,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
         <div className="relative py-2 overflow-hidden">
           <h1 
             ref={titleRef} 
-            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-[0.2em] md:tracking-[0.3em] font-[family-name:var(--font-geist)]"
+            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-[0.2em] md:tracking-[0.3em] font-[family-name:var(--font-outfit)]"
           >
             {splitToChars(TITLE)}
           </h1>
