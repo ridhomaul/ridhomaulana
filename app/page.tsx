@@ -12,6 +12,7 @@ import {
 } from "react-icons/si";
 import { Video, Camera, ExternalLink, ArrowUpRight } from "lucide-react";
 import Preloader from "./components/Preloader";
+import ProjectStack from "./components/ProjectStack";
 
 // Anime.js Micro-Interaction Hooks
 import { useButtonInteraction } from "./hooks/useButtonInteraction";
@@ -341,99 +342,7 @@ export default function Home() {
                 </h2>
               </div>
 
-              <div className="space-y-20 md:space-y-32">
-                {projects.map((project) => (
-                  <article
-                    key={project.title}
-                    className="anime-card project-card group"
-                  >
-                    {/* Project Image */}
-                    <div className="relative w-full aspect-video md:aspect-[2.2/1] overflow-hidden rounded-(--radius) bg-surface border border-border shadow-(--shadow-sm) mb-8">
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-                      />
-                    </div>
-
-                    {/* Project Content */}
-                    <div className="grid gap-8 md:grid-cols-[1.5fr_1fr] md:gap-12">
-                      <div>
-                        <div className="flex items-center gap-3 mb-4">
-                          <span className="text-accent text-sm font-semibold">
-                            {project.year}
-                          </span>
-                          <span className="w-px h-4 bg-border" />
-                          <div className="flex flex-wrap gap-2">
-                            {project.tags.map((tag) => (
-                              <span
-                                key={tag}
-                                className="text-xs font-semibold text-text-secondary bg-surface border border-border px-3 py-1 rounded-sm"
-                              >
-                                {tag}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-
-                        <h3 className="font-(family-name:--font-geist) text-2xl md:text-3xl font-semibold mb-3 group-hover:text-accent transition-colors duration-200">
-                          {project.title}
-                        </h3>
-                        <p className="text-text-secondary leading-relaxed mb-6">
-                          {project.description}
-                        </p>
-
-                        {/* Links */}
-                        <div className="flex items-center gap-4">
-                          {project.demoUrl && (
-                            <a
-                              href={project.demoUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="anime-button inline-flex items-center gap-2 text-sm font-semibold text-accent hover:underline underline-offset-4"
-                            >
-                              <ExternalLink className="w-4 h-4" />
-                              Live Demo
-                            </a>
-                          )}
-                          {project.repoUrl && (
-                            <a
-                              href={project.repoUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-2 text-sm font-semibold text-text-secondary hover:text-text-primary transition-colors duration-200"
-                            >
-                              <SiGithub className="w-4 h-4" />
-                              Repository
-                            </a>
-                          )}
-                        </div>
-                      </div>
-
-                      {/* Contribution & Challenge */}
-                      <div className="space-y-6">
-                        <div>
-                          <p className="text-xs font-semibold tracking-widest uppercase text-text-secondary mb-2">
-                            Contribution
-                          </p>
-                          <p className="text-sm text-text-secondary leading-relaxed">
-                            {project.contribution}
-                          </p>
-                        </div>
-                        <div>
-                          <p className="text-xs font-semibold tracking-widest uppercase text-text-secondary mb-2">
-                            Challenge
-                          </p>
-                          <p className="text-sm text-text-secondary leading-relaxed">
-                            {project.challenge}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </article>
-                ))}
-              </div>
+              <ProjectStack projects={projects} />
             </div>
           </section>
 
