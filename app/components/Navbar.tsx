@@ -8,7 +8,7 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useNavbarGlass } from "../hooks/useNavbarGlass";
 import { useSvgFilter } from "../hooks/useSvgFilter";
-import anime from "animejs";
+import anime from "@/app/utils/anime";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger, useGSAP);

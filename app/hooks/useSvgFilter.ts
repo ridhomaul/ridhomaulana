@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import anime from "animejs";
+import anime from "@/app/utils/anime";
 
 export function useSvgFilter(reducedMotion: boolean) {
   const filterRef = useRef<SVGSVGElement>(null);

@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import anime from "animejs";
+import anime from "@/app/utils/anime";
 
 interface PreloaderProps {
   onComplete: () => void;
