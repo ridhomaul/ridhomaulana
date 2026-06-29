@@ -3,6 +3,7 @@ import anime from "animejs";
 
 export function useSvgFilter(reducedMotion: boolean) {
   const filterRef = useRef<SVGSVGElement>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const animeInstance = useRef<any>(null);
 
   useEffect(() => {

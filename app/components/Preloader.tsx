@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-const anime = require("animejs");
+import anime from "animejs";
 
 interface PreloaderProps {
   onComplete: () => void;
@@ -138,7 +138,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
   return (
     <div 
       ref={containerRef}
-      className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#090909] text-white overflow-hidden"
+      className="fixed inset-0 z-9999 flex flex-col items-center justify-center bg-[#090909] text-white overflow-hidden"
     >
       {/* Background: Soft Ambient Light */}
       <div className="absolute inset-0 pointer-events-none opacity-40 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.04)_0%,transparent_60%)]" />
@@ -159,7 +159,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
         <div className="relative py-2 overflow-hidden">
           <h1 
             ref={titleRef} 
-            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-[0.2em] md:tracking-[0.3em] font-[family-name:var(--font-outfit)]"
+            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-[0.2em] md:tracking-[0.3em] font-(family-name:--font-outfit)"
           >
             {splitToChars(TITLE)}
           </h1>
@@ -167,7 +167,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
           {/* Glass Reflection Sweep */}
           <div 
             ref={reflectionRef}
-            className="absolute top-0 bottom-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-white to-transparent skew-x-[-25deg] opacity-0 mix-blend-overlay"
+            className="absolute top-0 bottom-0 left-0 w-1/3 bg-linear-to-r from-transparent via-white to-transparent skew-x-[-25deg] opacity-0 mix-blend-overlay"
           />
         </div>
 

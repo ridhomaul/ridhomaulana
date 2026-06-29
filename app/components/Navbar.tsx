@@ -213,8 +213,8 @@ export default function Navbar() {
         {/* Layer 6: Dynamic Multi-layer Sweeping Reflections (Managed by Anime.js) */}
         {!reducedMotion && (
           <div className="absolute inset-0 rounded-full overflow-hidden pointer-events-none">
-            <div className="anime-sweep-1 w-[50%] h-[150%] absolute -top-1/4 -left-[50%] bg-linear-to-r from-transparent via-white/70 to-transparent mix-blend-overlay blur-[1px] skew-x-[-30deg]" />
-            <div className="anime-sweep-2 w-[80%] h-[150%] absolute -top-1/4 -left-[80%] bg-linear-to-r from-transparent via-white/30 to-transparent blur-[3px] skew-x-[-40deg]" />
+            <div className="anime-sweep-1 w-[50%] h-[150%] absolute -top-1/4 left-[-50%] bg-linear-to-r from-transparent via-white/70 to-transparent mix-blend-overlay blur-[1px] skew-x-[-30deg]" />
+            <div className="anime-sweep-2 w-[80%] h-[150%] absolute -top-1/4 left-[-80%] bg-linear-to-r from-transparent via-white/30 to-transparent blur-[3px] skew-x-[-40deg]" />
           </div>
         )}
 

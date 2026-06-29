@@ -281,7 +281,7 @@ export default function Home() {
       {!introFinished && <Preloader onComplete={() => setIntroFinished(true)} />}
 
       {/* Scroll Progress */}
-      <div className="scroll-progress-bar fixed top-0 left-0 h-[2px] bg-[var(--color-accent)] z-[9999] origin-left scale-x-0 pointer-events-none" />
+      <div className="scroll-progress-bar fixed top-0 left-0 h-[2px] bg-accent z-9999 origin-left scale-x-0 pointer-events-none" />
 
       <div id="home" className="overflow-clip relative w-full" ref={container}>
         <main>
@@ -289,12 +289,12 @@ export default function Home() {
           <section className="relative w-full min-h-screen flex items-center">
             <div className="mx-auto w-full max-w-[1200px] px-6 md:px-12 pt-32 pb-24 lg:pt-40">
               <div className="max-w-3xl">
-                <h1 className="hero-title font-[family-name:var(--font-geist)] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold leading-[1.1] tracking-tight mb-6">
+                <h1 className="hero-title font-(family-name:--font-geist) text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold leading-[1.1] tracking-tight mb-6">
                   Building clean, scalable
                   <br />
                   web solutions.
                 </h1>
-                <p className="hero-desc text-[var(--color-text-secondary)] text-lg md:text-xl leading-relaxed max-w-xl mb-10">
+                <p className="hero-desc text-text-secondary text-lg md:text-xl leading-relaxed max-w-xl mb-10">
                   Focused on developing robust applications and managing high-impact digital media strategies that connect systems with people.
                 </p>
 
@@ -302,13 +302,13 @@ export default function Home() {
                   <a
                     href="/CV-Ridho-Maulana.pdf"
                     download="CV-Ridho-Maulana.pdf"
-                    className="anime-button group relative inline-flex items-center justify-center rounded-[var(--radius)] bg-[var(--color-text-primary)] px-8 py-3.5 text-sm font-semibold tracking-wide text-[var(--color-bg)] transition-all duration-200 hover:opacity-90 overflow-hidden"
+                    className="anime-button group relative inline-flex items-center justify-center rounded-(--radius) bg-text-primary px-8 py-3.5 text-sm font-semibold tracking-wide text-bg transition-all duration-200 hover:opacity-90 overflow-hidden"
                   >
                     <span className="relative z-10">Download CV</span>
                   </a>
                   <a
                     href="#contact"
-                    className="anime-button inline-flex items-center justify-center rounded-[var(--radius)] border border-[var(--color-border)] px-8 py-3.5 text-sm font-semibold tracking-wide transition-all duration-200 hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
+                    className="anime-button inline-flex items-center justify-center rounded-(--radius) border border-border px-8 py-3.5 text-sm font-semibold tracking-wide transition-all duration-200 hover:border-accent hover:text-accent"
                   >
                     Get in Touch
                   </a>
@@ -322,7 +322,7 @@ export default function Home() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={link.label}
-                      className="text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] transition-colors duration-200"
+                      className="text-text-secondary hover:text-accent transition-colors duration-200"
                     >
                       <link.icon className="w-5 h-5" />
                     </a>
@@ -336,19 +336,19 @@ export default function Home() {
           <section id="projects" className="py-24 md:py-32">
             <div className="projects-container mx-auto max-w-[1200px] px-6 md:px-12">
               <div className="reveal-section mb-16">
-                <h2 className="font-[family-name:var(--font-geist)] text-3xl md:text-4xl font-semibold">
+                <h2 className="font-(family-name:--font-geist) text-3xl md:text-4xl font-semibold">
                   Featured Projects
                 </h2>
               </div>
 
               <div className="space-y-20 md:space-y-32">
-                {projects.map((project, idx) => (
+                {projects.map((project) => (
                   <article
                     key={project.title}
                     className="anime-card project-card group"
                   >
                     {/* Project Image */}
-                    <div className="relative w-full aspect-video md:aspect-[2.2/1] overflow-hidden rounded-[var(--radius)] bg-[var(--color-surface)] border border-[var(--color-border)] shadow-[var(--shadow-sm)] mb-8">
+                    <div className="relative w-full aspect-video md:aspect-[2.2/1] overflow-hidden rounded-(--radius) bg-surface border border-border shadow-(--shadow-sm) mb-8">
                       <Image
                         src={project.image}
                         alt={project.title}
@@ -361,15 +361,15 @@ export default function Home() {
                     <div className="grid gap-8 md:grid-cols-[1.5fr_1fr] md:gap-12">
                       <div>
                         <div className="flex items-center gap-3 mb-4">
-                          <span className="text-[var(--color-accent)] text-sm font-semibold">
+                          <span className="text-accent text-sm font-semibold">
                             {project.year}
                           </span>
-                          <span className="w-px h-4 bg-[var(--color-border)]" />
+                          <span className="w-px h-4 bg-border" />
                           <div className="flex flex-wrap gap-2">
                             {project.tags.map((tag) => (
                               <span
                                 key={tag}
-                                className="text-xs font-semibold text-[var(--color-text-secondary)] bg-[var(--color-surface)] border border-[var(--color-border)] px-3 py-1 rounded-[var(--radius-sm)]"
+                                className="text-xs font-semibold text-text-secondary bg-surface border border-border px-3 py-1 rounded-sm"
                               >
                                 {tag}
                               </span>
@@ -377,10 +377,10 @@ export default function Home() {
                           </div>
                         </div>
 
-                        <h3 className="font-[family-name:var(--font-geist)] text-2xl md:text-3xl font-semibold mb-3 group-hover:text-[var(--color-accent)] transition-colors duration-200">
+                        <h3 className="font-(family-name:--font-geist) text-2xl md:text-3xl font-semibold mb-3 group-hover:text-accent transition-colors duration-200">
                           {project.title}
                         </h3>
-                        <p className="text-[var(--color-text-secondary)] leading-relaxed mb-6">
+                        <p className="text-text-secondary leading-relaxed mb-6">
                           {project.description}
                         </p>
 
@@ -391,7 +391,7 @@ export default function Home() {
                               href={project.demoUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="anime-button inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-accent)] hover:underline underline-offset-4"
+                              className="anime-button inline-flex items-center gap-2 text-sm font-semibold text-accent hover:underline underline-offset-4"
                             >
                               <ExternalLink className="w-4 h-4" />
                               Live Demo
@@ -402,7 +402,7 @@ export default function Home() {
                               href={project.repoUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors duration-200"
+                              className="inline-flex items-center gap-2 text-sm font-semibold text-text-secondary hover:text-text-primary transition-colors duration-200"
                             >
                               <SiGithub className="w-4 h-4" />
                               Repository
@@ -414,18 +414,18 @@ export default function Home() {
                       {/* Contribution & Challenge */}
                       <div className="space-y-6">
                         <div>
-                          <p className="text-xs font-semibold tracking-widest uppercase text-[var(--color-text-secondary)] mb-2">
+                          <p className="text-xs font-semibold tracking-widest uppercase text-text-secondary mb-2">
                             Contribution
                           </p>
-                          <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed">
+                          <p className="text-sm text-text-secondary leading-relaxed">
                             {project.contribution}
                           </p>
                         </div>
                         <div>
-                          <p className="text-xs font-semibold tracking-widest uppercase text-[var(--color-text-secondary)] mb-2">
+                          <p className="text-xs font-semibold tracking-widest uppercase text-text-secondary mb-2">
                             Challenge
                           </p>
-                          <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed">
+                          <p className="text-sm text-text-secondary leading-relaxed">
                             {project.challenge}
                           </p>
                         </div>
@@ -438,12 +438,12 @@ export default function Home() {
           </section>
 
           {/* ===== ABOUT SECTION ===== */}
-          <section id="about" className="py-24 md:py-32 border-t border-[var(--color-border)]">
+          <section id="about" className="py-24 md:py-32 border-t border-border">
             <div className="reveal-section mx-auto max-w-[1200px] px-6 md:px-12">
               <div className="grid gap-12 md:gap-16 lg:grid-cols-[1fr_1.2fr] items-center">
                 {/* Profile Image */}
                 <div className="relative w-full max-w-md mx-auto lg:mx-0">
-                  <div className="overflow-hidden rounded-[var(--radius)] shadow-[var(--shadow-md)]">
+                  <div className="overflow-hidden rounded-(--radius) shadow-(--shadow-md)">
                     <Image
                       src="/profile1.png"
                       alt="Ridho Maulana"
@@ -456,13 +456,13 @@ export default function Home() {
 
                 {/* About Text */}
                 <div>
-                  <h2 className="font-[family-name:var(--font-geist)] text-3xl md:text-4xl font-semibold mb-8">
+                  <h2 className="font-(family-name:--font-geist) text-3xl md:text-4xl font-semibold mb-8">
                     A developer who thinks
                     <br />
                     like a media strategist.
                   </h2>
 
-                  <div className="space-y-5 text-[var(--color-text-secondary)] leading-relaxed">
+                  <div className="space-y-5 text-text-secondary leading-relaxed">
                     <p>
                       As a Full-Stack Developer with strong roots in the digital media industry, I see software development as more than just lines of code. It&apos;s about creating an ecosystem that connects systems with people.
                     </p>
@@ -479,9 +479,9 @@ export default function Home() {
           </section>
 
           {/* ===== TECH STACK SECTION ===== */}
-          <section className="py-24 md:py-32 border-t border-[var(--color-border)]">
+          <section className="py-24 md:py-32 border-t border-border">
             <div className="tech-container reveal-section mx-auto max-w-[1200px] px-6 md:px-12 mb-12">
-              <h2 className="font-[family-name:var(--font-geist)] text-3xl md:text-4xl font-semibold">
+              <h2 className="font-(family-name:--font-geist) text-3xl md:text-4xl font-semibold">
                 Tech Stack
               </h2>
             </div>
@@ -494,11 +494,11 @@ export default function Home() {
                 {[...Object.values(techStack).flat().slice(0, Math.ceil(Object.values(techStack).flat().length / 2)), ...Object.values(techStack).flat().slice(0, Math.ceil(Object.values(techStack).flat().length / 2))].map((tool, idx) => (
                   <div
                     key={`top-${tool.name}-${idx}`}
-                    className="tech-item flex items-center gap-3 flex-shrink-0 group cursor-default"
+                    className="tech-item flex items-center gap-3 shrink-0 group cursor-default"
                     title={tool.name}
                   >
                     <tool.Icon
-                      className={`w-12 h-12 md:w-16 md:h-16 transition-transform duration-200 group-hover:scale-110 ${!tool.color ? "text-[var(--color-text-primary)]" : ""}`}
+                      className={`w-12 h-12 md:w-16 md:h-16 transition-transform duration-200 group-hover:scale-110 ${!tool.color ? "text-text-primary" : ""}`}
                       style={tool.color ? { color: tool.color } : {}}
                     />
                   </div>
@@ -510,11 +510,11 @@ export default function Home() {
                 {[...Object.values(techStack).flat().slice(Math.ceil(Object.values(techStack).flat().length / 2)), ...Object.values(techStack).flat().slice(Math.ceil(Object.values(techStack).flat().length / 2))].map((tool, idx) => (
                   <div
                     key={`bottom-${tool.name}-${idx}`}
-                    className="tech-item flex items-center gap-3 flex-shrink-0 group cursor-default"
+                    className="tech-item flex items-center gap-3 shrink-0 group cursor-default"
                     title={tool.name}
                   >
                     <tool.Icon
-                      className={`w-12 h-12 md:w-16 md:h-16 transition-transform duration-200 group-hover:scale-110 ${!tool.color ? "text-[var(--color-text-primary)]" : ""}`}
+                      className={`w-12 h-12 md:w-16 md:h-16 transition-transform duration-200 group-hover:scale-110 ${!tool.color ? "text-text-primary" : ""}`}
                       style={tool.color ? { color: tool.color } : {}}
                     />
                   </div>
@@ -525,16 +525,16 @@ export default function Home() {
           </section>
 
           {/* ===== EXPERIENCE SECTION ===== */}
-          <section id="experience" className="py-24 md:py-32 border-t border-[var(--color-border)]">
+          <section id="experience" className="py-24 md:py-32 border-t border-border">
             <div className="reveal-section mx-auto max-w-[1200px] px-6 md:px-12">
-              <h2 className="font-[family-name:var(--font-geist)] text-3xl md:text-4xl font-semibold mb-16">
+              <h2 className="font-(family-name:--font-geist) text-3xl md:text-4xl font-semibold mb-16">
                 Experience
               </h2>
 
               <div className="experience-container relative max-w-3xl mx-auto">
                 {/* Timeline Line */}
-                <div className="absolute left-0 md:left-6 top-0 bottom-0 w-px bg-[var(--color-border)]">
-                  <div className="timeline-line w-full bg-[var(--color-accent)] origin-top" />
+                <div className="absolute left-0 md:left-6 top-0 bottom-0 w-px bg-border">
+                  <div className="timeline-line w-full bg-accent origin-top" />
                 </div>
 
                 <div className="space-y-10">
@@ -544,27 +544,27 @@ export default function Home() {
                       className="exp-item relative pl-8 md:pl-16"
                     >
                       {/* Timeline Node */}
-                      <div className="absolute left-[-4px] md:left-[20px] top-1.5 w-[9px] h-[9px] rounded-full bg-[var(--color-bg)] border-2 border-[var(--color-accent)] z-10" />
+                      <div className="absolute left-[-4px] md:left-[20px] top-1.5 w-[9px] h-[9px] rounded-full bg-bg border-2 border-accent z-10" />
 
-                      <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[var(--radius)] p-6 shadow-[var(--shadow-sm)] hover:shadow-[var(--shadow-md)] transition-shadow duration-200">
+                      <div className="bg-surface border border-border rounded-(--radius) p-6 shadow-(--shadow-sm) hover:shadow-(--shadow-md) transition-shadow duration-200">
                         <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-3">
-                          <h3 className="font-[family-name:var(--font-geist)] text-lg font-semibold">
+                          <h3 className="font-(family-name:--font-geist) text-lg font-semibold">
                             {item.title}
                           </h3>
-                          <span className="text-xs font-semibold text-[var(--color-accent)]">
+                          <span className="text-xs font-semibold text-accent">
                             {item.period}
                           </span>
                         </div>
-                        <p className="text-sm font-medium text-[var(--color-text-secondary)] mb-4">
+                        <p className="text-sm font-medium text-text-secondary mb-4">
                           {item.place}
                         </p>
                         <ul className="space-y-2">
                           {item.details.map((detail, dIdx) => (
                             <li
                               key={dIdx}
-                              className="flex items-start gap-2 text-sm text-[var(--color-text-secondary)] leading-relaxed"
+                              className="flex items-start gap-2 text-sm text-text-secondary leading-relaxed"
                             >
-                              <span className="mt-2 w-1 h-1 rounded-full bg-[var(--color-accent)] flex-shrink-0" />
+                              <span className="mt-2 w-1 h-1 rounded-full bg-accent shrink-0" />
                               {detail}
                             </li>
                           ))}
@@ -578,20 +578,20 @@ export default function Home() {
           </section>
 
           {/* ===== CONTACT SECTION ===== */}
-          <section id="contact" className="py-24 md:py-32 border-t border-[var(--color-border)]">
+          <section id="contact" className="py-24 md:py-32 border-t border-border">
             <div className="mx-auto max-w-[1200px] px-6 md:px-12">
               <div className="max-w-2xl mx-auto text-center">
-                <h2 className="font-[family-name:var(--font-geist)] text-3xl md:text-5xl font-semibold mb-6">
+                <h2 className="font-(family-name:--font-geist) text-3xl md:text-5xl font-semibold mb-6">
                   Let&apos;s build something together.
                 </h2>
-                <p className="text-[var(--color-text-secondary)] text-lg leading-relaxed mb-10">
+                <p className="text-text-secondary text-lg leading-relaxed mb-10">
                   Interested in discussing web architecture, platform collaboration, or simply exchanging ideas? Let&apos;s start a conversation.
                 </p>
 
                 <div className="flex flex-wrap items-center justify-center gap-6 mb-12">
                   <a
                     href="mailto:ridho@example.com"
-                    className="anime-button inline-flex items-center gap-2 rounded-[var(--radius)] bg-[var(--color-accent)] text-white px-8 py-3.5 text-sm font-semibold transition-all duration-200 hover:opacity-90"
+                    className="anime-button inline-flex items-center gap-2 rounded-(--radius) bg-accent text-white px-8 py-3.5 text-sm font-semibold transition-all duration-200 hover:opacity-90"
                   >
                     <ArrowUpRight className="w-4 h-4" />
                     Send Email
@@ -600,7 +600,7 @@ export default function Home() {
                     href="https://www.linkedin.com/in/ridho-maulana-073aaa386/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="anime-button inline-flex items-center gap-2 rounded-[var(--radius)] border border-[var(--color-border)] px-8 py-3.5 text-sm font-semibold transition-all duration-200 hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
+                    className="anime-button inline-flex items-center gap-2 rounded-(--radius) border border-border px-8 py-3.5 text-sm font-semibold transition-all duration-200 hover:border-accent hover:text-accent"
                   >
                     <SiLinkerd className="w-4 h-4" />
                     LinkedIn
@@ -609,7 +609,7 @@ export default function Home() {
                     href="https://github.com/ridhomaul"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="anime-button inline-flex items-center gap-2 rounded-[var(--radius)] border border-[var(--color-border)] px-8 py-3.5 text-sm font-semibold transition-all duration-200 hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
+                    className="anime-button inline-flex items-center gap-2 rounded-(--radius) border border-border px-8 py-3.5 text-sm font-semibold transition-all duration-200 hover:border-accent hover:text-accent"
                   >
                     <SiGithub className="w-4 h-4" />
                     GitHub
@@ -627,24 +627,24 @@ export default function Home() {
                       name="name"
                       type="text"
                       placeholder="Name"
-                      className="p-4 border border-[var(--color-border)] bg-[var(--color-surface)] rounded-[var(--radius)] text-sm font-medium transition-colors duration-200"
+                      className="p-4 border border-border bg-surface rounded-(--radius) text-sm font-medium transition-colors duration-200"
                     />
                     <input
                       name="email"
                       type="email"
                       placeholder="Email"
-                      className="p-4 border border-[var(--color-border)] bg-[var(--color-surface)] rounded-[var(--radius)] text-sm font-medium transition-colors duration-200"
+                      className="p-4 border border-border bg-surface rounded-(--radius) text-sm font-medium transition-colors duration-200"
                     />
                   </div>
                   <textarea
                     name="message"
                     rows={5}
                     placeholder="Message"
-                    className="p-4 border border-[var(--color-border)] bg-[var(--color-surface)] rounded-[var(--radius)] text-sm font-medium transition-colors duration-200 resize-none"
+                    className="p-4 border border-border bg-surface rounded-(--radius) text-sm font-medium transition-colors duration-200 resize-none"
                   />
                   <button
                     type="submit"
-                    className="anime-button group relative overflow-hidden rounded-[var(--radius)] bg-[var(--color-text-primary)] text-[var(--color-bg)] px-8 py-3.5 text-sm font-semibold transition-all duration-200 hover:opacity-90 w-full sm:w-fit cursor-pointer"
+                    className="anime-button group relative overflow-hidden rounded-(--radius) bg-text-primary text-bg px-8 py-3.5 text-sm font-semibold transition-all duration-200 hover:opacity-90 w-full sm:w-fit cursor-pointer"
                   >
                     Send Message
                   </button>
@@ -654,12 +654,12 @@ export default function Home() {
           </section>
 
           {/* ===== FOOTER ===== */}
-          <footer className="py-8 border-t border-[var(--color-border)]">
+          <footer className="py-8 border-t border-border">
             <div className="mx-auto max-w-[1200px] px-6 md:px-12 flex flex-col sm:flex-row items-center justify-between gap-4">
-              <p className="text-xs font-medium text-[var(--color-text-secondary)]">
+              <p className="text-xs font-medium text-text-secondary">
                 © 2026 Ridho Maulana. All rights reserved.
               </p>
-              <p className="text-xs font-medium text-[var(--color-text-secondary)]">
+              <p className="text-xs font-medium text-text-secondary">
                 Built with Next.js, GSAP & Anime.js
               </p>
             </div>
