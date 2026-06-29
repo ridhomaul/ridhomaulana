@@ -489,36 +489,30 @@ export default function Home() {
 
           {/* ===== TECH STACK SECTION ===== */}
           <section className="py-24 md:py-32 border-t border-[var(--color-border)]">
-            <div className="tech-container reveal-section mx-auto max-w-[1200px] px-6 md:px-12">
+            <div className="tech-container reveal-section mx-auto max-w-[1200px] px-6 md:px-12 mb-12">
               <p className="text-[var(--color-accent)] text-sm font-semibold tracking-widest uppercase mb-3">
                 Skills
               </p>
-              <h2 className="font-[family-name:var(--font-geist)] text-3xl md:text-4xl font-semibold mb-16">
+              <h2 className="font-[family-name:var(--font-geist)] text-3xl md:text-4xl font-semibold">
                 Tech Stack
               </h2>
+            </div>
 
-              <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
-                {Object.entries(techStack).map(([category, items]) => (
-                  <div key={category}>
-                    <h3 className="text-xs font-semibold tracking-widest uppercase text-[var(--color-text-secondary)] mb-6">
-                      {category}
-                    </h3>
-                    <div className="space-y-4">
-                      {items.map((tool) => (
-                        <div
-                          key={tool.name}
-                          className="tech-item flex items-center gap-3 group"
-                        >
-                          <tool.Icon
-                            className={`w-5 h-5 transition-colors duration-200 ${!tool.color ? "text-[var(--color-text-primary)]" : ""}`}
-                            style={tool.color ? { color: tool.color } : {}}
-                          />
-                          <span className="text-sm font-medium text-[var(--color-text-secondary)] group-hover:text-[var(--color-text-primary)] transition-colors duration-200">
-                            {tool.name}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
+            {/* Marquee Container */}
+            <div className="relative w-full overflow-hidden" style={{ maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)", WebkitMaskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)" }}>
+              <div className="animate-marquee gap-10 md:gap-14 pl-10 md:pl-14">
+                {[...Object.values(techStack).flat(), ...Object.values(techStack).flat()].map((tool, idx) => (
+                  <div
+                    key={`${tool.name}-${idx}`}
+                    className="tech-item flex items-center gap-3 flex-shrink-0 group cursor-default"
+                  >
+                    <tool.Icon
+                      className={`w-6 h-6 md:w-7 md:h-7 transition-transform duration-200 group-hover:scale-110 ${!tool.color ? "text-[var(--color-text-primary)]" : ""}`}
+                      style={tool.color ? { color: tool.color } : {}}
+                    />
+                    <span className="text-sm font-medium text-[var(--color-text-secondary)] group-hover:text-[var(--color-text-primary)] transition-colors duration-200 whitespace-nowrap">
+                      {tool.name}
+                    </span>
                   </div>
                 ))}
               </div>
