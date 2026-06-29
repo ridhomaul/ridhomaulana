@@ -339,9 +339,6 @@ export default function Home() {
           <section id="projects" className="py-24 md:py-32">
             <div className="projects-container mx-auto max-w-[1200px] px-6 md:px-12">
               <div className="reveal-section mb-16">
-                <p className="text-[var(--color-accent)] text-sm font-semibold tracking-widest uppercase mb-3">
-                  Portfolio
-                </p>
                 <h2 className="font-[family-name:var(--font-geist)] text-3xl md:text-4xl font-semibold">
                   Featured Projects
                 </h2>
@@ -462,9 +459,6 @@ export default function Home() {
 
                 {/* About Text */}
                 <div>
-                  <p className="text-[var(--color-accent)] text-sm font-semibold tracking-widest uppercase mb-3">
-                    About
-                  </p>
                   <h2 className="font-[family-name:var(--font-geist)] text-3xl md:text-4xl font-semibold mb-8">
                     A developer who thinks
                     <br />
@@ -536,9 +530,6 @@ export default function Home() {
           {/* ===== EXPERIENCE SECTION ===== */}
           <section id="experience" className="py-24 md:py-32 border-t border-[var(--color-border)]">
             <div className="reveal-section mx-auto max-w-[1200px] px-6 md:px-12">
-              <p className="text-[var(--color-accent)] text-sm font-semibold tracking-widest uppercase mb-3">
-                Career
-              </p>
               <h2 className="font-[family-name:var(--font-geist)] text-3xl md:text-4xl font-semibold mb-16">
                 Experience
               </h2>
@@ -593,9 +584,6 @@ export default function Home() {
           <section id="contact" className="py-24 md:py-32 border-t border-[var(--color-border)]">
             <div className="mx-auto max-w-[1200px] px-6 md:px-12">
               <div className="max-w-2xl mx-auto text-center">
-                <p className="text-[var(--color-accent)] text-sm font-semibold tracking-widest uppercase mb-3">
-                  Contact
-                </p>
                 <h2 className="font-[family-name:var(--font-geist)] text-3xl md:text-5xl font-semibold mb-6">
                   Let&apos;s build something together.
                 </h2>
